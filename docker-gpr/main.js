@@ -10,10 +10,10 @@ async function run() {
     const tag = process.env.GITHUB_SHA;
 
     await exec.exec(
-      `docker login docker.pkg.github.com -u ${username,,} -p ${token}`
+      `docker login docker.pkg.github.com -u ${username} -p ${token}`
     );
     await exec.exec(
-      `echo docker build -t docker.pkg.github.com/${githubRepo,,}/${imageName,,}:${tag.slice(
+      `echo docker build -t docker.pkg.github.com/$(echo "${githubRepo}/${imageName}" | tr '[:upper:]' '[:lower:]'):${tag.slice(
         tag.length - 3
       )} .`
     );
