@@ -13,7 +13,7 @@ async function run() {
       `docker login docker.pkg.github.com -u ${username} -p ${token}`
     );
     await exec.exec(
-      `echo docker build -t docker.pkg.github.com/$(echo "${githubRepo}/${imageName}" | tr '[:upper:]' '[:lower:]'):${tag.slice(
+      `docker build -t docker.pkg.github.com/$(echo "${githubRepo}/${imageName}" | tr '[:upper:]' '[:lower:]'):${tag.slice(
         tag.length - 3
       )} .`
     );
